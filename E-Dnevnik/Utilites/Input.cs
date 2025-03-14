@@ -37,7 +37,7 @@ namespace E_Dnevnik.Utilites
         {
             Console.Write("Student name: ");
             string studentName = Console.ReadLine();
-            if (studentName.All(char.IsLetter))
+            if (studentName.All(char.IsLetter)) // whitespace - regex
             {
                 return studentName;
             }

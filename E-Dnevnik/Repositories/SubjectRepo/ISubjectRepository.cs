@@ -8,5 +8,6 @@ namespace E_Dnevnik.Repositories.SubjectRepo
         public void DisplayAllSubjects();
         public Subject GetSubjectByName(string subjectName);
         public int GetSubjectIdByName(string subjectName);
+        public string GetSubjectNameById(int subjectId);
     }
 }

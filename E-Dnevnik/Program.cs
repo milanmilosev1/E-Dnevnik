@@ -46,7 +46,7 @@ while (true)
         case "5":
             Console.Clear();
             Console.WriteLine("Are you sure you want to exit (yes/no)?");
-            string prompt = Console.ReadLine();
+            string prompt = Console.ReadLine() ?? string.Empty;
             if (prompt == "yes")
             {
                 Console.WriteLine("Exiting program...");

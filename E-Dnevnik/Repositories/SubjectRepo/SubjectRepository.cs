@@ -33,6 +33,18 @@ namespace E_Dnevnik.Repositories.SubjectRepo
             return null;
         }
 
+        public string GetSubjectNameById(int subjectId)
+        {
+            foreach(var subject in Subjects)
+            {
+                if (subject.SubjectId == subjectId)
+                {
+                    return subject.SubjectName;
+                }
+            }
+            return "subject not found";
+        }
+
         public int GetSubjectIdByName(string subjectName)
         {
             Subject subject = GetSubjectByName(subjectName);
