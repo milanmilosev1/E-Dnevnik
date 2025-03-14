@@ -36,29 +36,30 @@ namespace E_Dnevnik.Services
 
         private string DescribeGrades(double averageGrade)
         {
-            if (averageGrade > 1 && averageGrade < 1.49)
+            if (averageGrade >= 1 && averageGrade < 1.49) //refactor
             {
                 return "Nedovoljan";
             }
-            else if (averageGrade > 1.5 && averageGrade < 2.49)
+            else if (averageGrade >= 1.5 && averageGrade < 2.49)
             {
                 return "Dovoljan";
             }
-            else if (averageGrade > 2.5 && averageGrade < 3.49)
+            else if (averageGrade >= 2.5 && averageGrade < 3.49)
             {
                 return "Dobar";
             }
-            else if (averageGrade > 3.5 && averageGrade < 4.49)
+            else if (averageGrade >= 3.5 && averageGrade < 4.49)
             {
                 return "Vrlo dobar";
             }
             return "Odlican";
         }
 
+        //move to printer class
         public void PrintGrades()
         {
             Console.Write("Student Name:");
-            string name = Console.ReadLine();
+            string name = Console.ReadLine() ?? string.Empty;
             Student student = _studentRepository.GetStudentByName(name);
             Console.WriteLine("Subject Grades:");
             PrintSubjectGrade(student);
@@ -71,13 +72,14 @@ namespace E_Dnevnik.Services
                 int subjectId = entry.Key;
                 List<int> grades = entry.Value;
 
-                Console.Write($"Subject {subjectId}: ");
-
+                Console.Write($"{_subjectRepository.GetSubjectNameById(subjectId)}: ");
+                
                 if (grades.Count > 0)
                 {
                     double average = grades.Average();
                     Console.Write(string.Join(", ", grades));
                     Console.WriteLine(" | Average: " + average + " " + DescribeGrades(average));
+                    //Console.WriteLine($"[{string.Join(", ", grades)}]");
                 }
                 else
                 {
